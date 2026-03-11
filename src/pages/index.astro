@@ -639,8 +639,11 @@ import '../styles/global.css';
         <p class="text-neutral-400 mb-10">Have a project in mind? Fill out the form below and I'll get
             back to you
             within 24 hours.</p>
-        <form name="contact" netlify class="flex flex-col gap-4">
+        <form name="contact" netlify-honeypot="bot-field" netlify class="flex flex-col gap-4">
             <input type="hidden" name="form-name" value="contact"/>
+            <p class="hidden" aria-hidden="true">
+                <input name="bot-field" autocomplete="off"/>
+            </p>
             <input type="text" name="name" placeholder="Your name"
                    class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"/>
             <input type="email" name="email" placeholder="Your email"
