@@ -316,6 +316,7 @@ import '../styles/global.css';
     <section id="projects" class="py-24 px-6 max-w-4xl mx-auto border-t border-neutral-800">
         <p class="text-neutral-500 text-sm tracking-widest uppercase mb-4">Projects</p>
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Recent work.</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
             {[
                 {
@@ -323,105 +324,72 @@ import '../styles/global.css';
                     desc: "A digital archive for Sawmill Slough Preserve — featuring custom GIS maps and applications cataloging over 1,200 species, 10,000 photos, and oral histories.",
                     tech: "WordPress · PHP · ArcGIS",
                     link: null,
+                    demo: null,
                     images: [
                         "/images/projects/preserve/preserve-screenshot-1.png",
                         "/images/projects/preserve/preserve-screenshot-2.png",
-                        "/images/projects/preserve/preserve-screenshot-3.png",
+                        "/images/projects/preserve/preserve-screenshot-3.png"
                     ]
                 },
                 {
-                    title: "Coming Soon",
-                    desc: "Project details coming soon.",
-                    tech: "",
-                    link: null,
-                    images: []
+                    title: "Duval Audubon Society",
+                    desc: "A full WordPress site for a nonprofit bird conservation chapter serving Northeast Florida — built to support 1,200+ members with event management, volunteer coordination, conservation resources, and donation integration.",
+                    tech: "WordPress · PHP · The Events Calendar",
+                    link: "https://duvalaudubon.org",
+                    demo: null,
+                    images: [
+                        "/images/projects/audubon/audubon-screenshot-1.png"
+                    ]
                 },
                 {
-                    title: "Coming Soon",
-                    desc: "Project details coming soon.",
-                    tech: "",
+                    title: "Calorie Calendar",
+                    desc: "A browser-based calorie tracking app with a calendar view — log meals by day and track progress toward a daily goal.",
+                    tech: "JavaScript · HTML · CSS · Firebase",
                     link: null,
-                    images: []
+                    demo: "https://calorie-demo.netlify.app/",
+                    images: [
+                        "/images/projects/calorie/calorie-screenshot-1.png"
+                    ]
                 },
                 {
-                    title: "Coming Soon",
-                    desc: "Project details coming soon.",
-                    tech: "",
+                    title: "Donation CRM",
+                    desc: "A full-stack Django CRM for nonprofit donor management featuring donation tracking, contact management, interactive maps, dashboards, and reporting.",
+                    tech: "Django · Python · PostgreSQL",
                     link: null,
-                    images: []
-                },
-                {
-                    title: "Coming Soon",
-                    desc: "Project details coming soon.",
-                    tech: "",
-                    link: null,
-                    images: []
-                },
-                {
-                    title: "Coming Soon",
-                    desc: "Project details coming soon.",
-                    tech: "",
-                    link: null,
-                    images: []
-                },
+                    demo: null,
+                    images: [
+                        "/images/projects/crm/crm-screenshot-1.png",
+                        "/images/projects/crm/crm-screenshot-2.png",
+                        "/images/projects/crm/crm-screenshot-3.png"
+                    ]
+                }
             ].map((project, pi) => (
-                    <div class="border border-neutral-800 rounded-xl overflow-hidden hover:border-neutral-600 transition-colors group"
-                         data-project={pi}>
-                        <div class={`relative w-full h-48 bg-neutral-900 overflow-hidden ${project.images.length > 0 ? 'cursor-pointer gallery-container' : ''}`}
-                             data-project={pi}>
+                    <div
+                            class="project-card border border-neutral-800 rounded-xl overflow-hidden hover:border-neutral-600 transition-colors group"
+                            data-project={pi}
+                    >
+                        <!-- Project Image -->
+                        <div
+                                class={`relative w-full h-48 bg-neutral-900 overflow-hidden ${
+                                    project.images.length > 0 ? "cursor-pointer" : ""
+                                }`}
+                                data-project-image={pi}
+                        >
                             {project.images.length > 0 ? (
                                     <>
                                         {project.images.map((img, ii) => (
                                                 <img
                                                         src={img}
                                                         alt={`${project.title} screenshot ${ii + 1}`}
-                                                        class={`gallery-img absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${ii === 0 ? 'opacity-100' : 'opacity-0'}`}
-                                                        data-index={ii}
+                                                        class={`project-image absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                                                            ii === 0 ? "opacity-100" : "opacity-0"
+                                                        }`}
                                                         data-project={pi}
+                                                        data-image={ii}
                                                 />
                                         ))}
-                                        {project.images.length > 1 && (
-                                                <>
-                                                    <button class="gallery-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
-                                                            data-project={pi} aria-label="Previous">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                             width="14" height="14"
-                                                             fill="none" viewBox="0 0 24 24"
-                                                             stroke="currentColor"
-                                                             stroke-width="2">
-                                                            <path stroke-linecap="round"
-                                                                  stroke-linejoin="round"
-                                                                  d="M15 19l-7-7 7-7"/>
-                                                        </svg>
-                                                    </button>
-                                                    <button class="gallery-next absolute right-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
-                                                            data-project={pi} aria-label="Next">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                             width="14" height="14"
-                                                             fill="none" viewBox="0 0 24 24"
-                                                             stroke="currentColor"
-                                                             stroke-width="2">
-                                                            <path stroke-linecap="round"
-                                                                  stroke-linejoin="round"
-                                                                  d="M9 5l7 7-7 7"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-                                                        {project.images.map((_, di) => (
-                                                                <button class={`gallery-dot w-1.5 h-1.5 rounded-full transition-colors ${di === 0 ? 'bg-white' : 'bg-white/40'}`}
-                                                                        data-project={pi}
-                                                                        data-index={di}
-                                                                        aria-label={`Go to screenshot ${di + 1}`}></button>
-                                                        ))}
-                                                    </div>
-                                                </>
-                                        )}
-                                        <div class="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <div class="bg-black/60 rounded px-2 py-1 text-xs text-white/70">
-                                                click to
-                                                expand
-                                            </div>
-                                        </div>
+
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors"></div>
                                     </>
                             ) : (
                                     <div class="absolute inset-0 flex items-center justify-center text-neutral-700 text-sm">
@@ -429,204 +397,446 @@ import '../styles/global.css';
                                     </div>
                             )}
                         </div>
+
+                        <!-- Project Info -->
                         <div class="p-5">
-                            <div class="flex items-start justify-between gap-2 mb-2">
-                                <h3 class="text-white font-semibold">{project.title}</h3>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <h3 class="text-white font-semibold">
+                                    {project.title}
+                                </h3>
+
                                 {project.link && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer"
-                                           class="text-xs text-neutral-400 border border-neutral-700 rounded px-2 py-1 hover:text-white hover:border-neutral-500 transition-colors whitespace-nowrap">
-                                            Live site ↗
+                                        <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-colors whitespace-nowrap"
+                                        >
+                                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+                                            Live Site
                                         </a>
                                 )}
+
+                                {project.demo && (
+                                        <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-colors whitespace-nowrap"
+                                        >
+                                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+                                            Demo
+                                        </a>
+                                )}
+
+                                {!project.link && !project.demo && project.images.length > 0 && (
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 whitespace-nowrap">
+                                Screenshots
+                            </span>
+                                )}
                             </div>
-                            <p class="text-neutral-400 text-sm mb-3 leading-relaxed">{project.desc}</p>
-                            {project.tech &&
-                                    <span class="text-xs text-neutral-600">{project.tech}</span>}
+
+                            <p class="text-neutral-400 text-sm mb-3 leading-relaxed">
+                                {project.desc}
+                            </p>
+
+                            <span class="text-xs text-neutral-600">
+                        {project.tech}
+                    </span>
                         </div>
                     </div>
             ))}
         </div>
     </section>
 
+
     <!-- LIGHTBOX -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center"
-         role="dialog"
-         aria-modal="true">
-        <button id="lightbox-close"
+    <div
+            id="lightbox"
+            class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+    >
+        <!-- Close -->
+        <button
+                id="lightbox-close"
                 class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors z-10"
-                aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none"
-                 viewBox="0 0 24 24"
-                 stroke="currentColor" stroke-width="2">
+                aria-label="Close"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+            >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
-        <button id="lightbox-prev"
+
+        <!-- Previous -->
+        <button
+                id="lightbox-prev"
                 class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="Previous">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                 viewBox="0 0 24 24"
-                 stroke="currentColor" stroke-width="2">
+                aria-label="Previous image"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+            >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
-        <button id="lightbox-next"
+
+        <!-- Next -->
+        <button
+                id="lightbox-next"
                 class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-                aria-label="Next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                 viewBox="0 0 24 24"
-                 stroke="currentColor" stroke-width="2">
+                aria-label="Next image"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+            >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
             </svg>
         </button>
+
+        <!-- Image -->
         <div class="flex flex-col items-center gap-4 max-w-5xl w-full px-16">
-            <img id="lightbox-img" src="" alt=""
-                 class="max-h-[75vh] w-auto rounded-lg shadow-2xl object-contain"/>
+            <img
+                    id="lightbox-img"
+                    src=""
+                    alt=""
+                    class="max-h-[75vh] w-auto rounded-lg shadow-2xl object-contain"
+            />
+
             <div class="flex flex-col items-center gap-2">
-                <p id="lightbox-title" class="text-white font-semibold text-lg"></p>
-                <div id="lightbox-dots" class="flex gap-2"></div>
+                <p
+                        id="lightbox-title"
+                        class="text-white font-semibold text-lg"
+                ></p>
+
+                <div
+                        id="lightbox-dots"
+                        class="flex gap-2"
+                ></div>
             </div>
         </div>
     </div>
 
+
     <script>
+        /*
+         * Project data
+         */
         const projects = [
             {
                 title: "Preserve Digital Archive",
+                link: null,
+                demo: null,
                 images: [
                     "/images/projects/preserve/preserve-screenshot-1.png",
                     "/images/projects/preserve/preserve-screenshot-2.png",
-                    "/images/projects/preserve/preserve-screenshot-3.png",
+                    "/images/projects/preserve/preserve-screenshot-3.png"
                 ]
             },
-            {title: "Coming Soon", images: []},
-            {title: "Coming Soon", images: []},
-            {title: "Coming Soon", images: []},
-            {title: "Coming Soon", images: []},
-            {title: "Coming Soon", images: []},
+            {
+                title: "Duval Audubon Society",
+                link: "https://duvalaudubon.org",
+                demo: null,
+                images: [
+                    "/images/projects/audubon/audubon-screenshot-1.png"
+                ]
+            },
+            {
+                title: "Calorie Calendar",
+                link: null,
+                demo: "https://calorie-demo.netlify.app/",
+                images: [
+                    "/images/projects/calorie/calorie-screenshot-1.png"
+                ]
+            },
+            {
+                title: "Donation CRM",
+                link: null,
+                demo: null,
+                images: [
+                    "/images/projects/crm/crm-screenshot-1.png",
+                    "/images/projects/crm/crm-screenshot-2.png",
+                    "/images/projects/crm/crm-screenshot-3.png"
+                ]
+            }
         ];
 
+
+        /*
+         * Current image for each project
+         */
         const currentIndex: Record<number, number> = {};
-        projects.forEach((_, i) => currentIndex[i] = 0);
 
-        function setCardImage(pi: number, idx: number) {
-            const imgs = document.querySelectorAll<HTMLImageElement>(`.gallery-img[data-project="${pi}"]`);
-            const dots = document.querySelectorAll<HTMLButtonElement>(`.gallery-dot[data-project="${pi}"]`);
-            imgs.forEach((img, i) => img.classList.toggle('opacity-100', i === idx));
-            imgs.forEach((img, i) => img.classList.toggle('opacity-0', i !== idx));
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('bg-white', i === idx);
-                dot.classList.toggle('bg-white/40', i !== idx);
+        projects.forEach((_, index) => {
+            currentIndex[index] = 0;
+        });
+
+
+        /*
+         * Lightbox elements
+         */
+        const lightbox = document.getElementById("lightbox")!;
+        const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+        const lightboxTitle = document.getElementById("lightbox-title")!;
+        const lightboxDots = document.getElementById("lightbox-dots")!;
+
+        const closeButton = document.getElementById("lightbox-close")!;
+        const previousButton = document.getElementById("lightbox-prev")!;
+        const nextButton = document.getElementById("lightbox-next")!;
+
+
+        let currentProject = 0;
+        let currentImage = 0;
+
+
+        /*
+         * Change the image displayed on a project card
+         */
+        function setProjectImage(projectIndex: number, imageIndex: number) {
+            const images = document.querySelectorAll<HTMLImageElement>(
+                `.project-image[data-project="${projectIndex}"]`
+            );
+
+            images.forEach((image, index) => {
+                image.classList.toggle(
+                    "opacity-100",
+                    index === imageIndex
+                );
+
+                image.classList.toggle(
+                    "opacity-0",
+                    index !== imageIndex
+                );
             });
-            currentIndex[pi] = idx;
+
+            currentIndex[projectIndex] = imageIndex;
         }
 
-        document.querySelectorAll('.gallery-prev').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const pi = parseInt((btn as HTMLElement).dataset.project!);
-                const total = projects[pi].images.length;
-                setCardImage(pi, (currentIndex[pi] - 1 + total) % total);
-            });
-        });
 
-        document.querySelectorAll('.gallery-next').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const pi = parseInt((btn as HTMLElement).dataset.project!);
-                const total = projects[pi].images.length;
-                setCardImage(pi, (currentIndex[pi] + 1) % total);
-            });
-        });
+        /*
+         * Open the lightbox
+         */
+        function openLightbox(projectIndex: number, imageIndex: number) {
+            currentProject = projectIndex;
+            currentImage = imageIndex;
 
-        document.querySelectorAll('.gallery-dot').forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const el = dot as HTMLElement;
-                const pi = parseInt(el.dataset.project!);
-                const idx = parseInt(el.dataset.index!);
-                setCardImage(pi, idx);
-            });
-        });
-
-        const lightbox = document.getElementById('lightbox')!;
-        const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-        const lightboxTitle = document.getElementById('lightbox-title')!;
-        const lightboxDots = document.getElementById('lightbox-dots')!;
-        let lbProject = 0;
-        let lbIndex = 0;
-
-        function openLightbox(pi: number, idx: number) {
-            lbProject = pi;
-            lbIndex = idx;
             updateLightbox();
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+
+            lightbox.classList.remove("hidden");
+            lightbox.classList.add("flex");
+
+            document.body.style.overflow = "hidden";
         }
 
+
+        /*
+         * Close the lightbox
+         */
         function closeLightbox() {
-            lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
-            document.body.style.overflow = '';
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+
+            document.body.style.overflow = "";
         }
 
+
+        /*
+         * Update lightbox contents
+         */
         function updateLightbox() {
-            const p = projects[lbProject];
-            lightboxImg.src = p.images[lbIndex];
-            lightboxImg.alt = `${p.title} screenshot ${lbIndex + 1}`;
-            lightboxTitle.textContent = p.title;
-            lightboxDots.innerHTML = '';
-            p.images.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = `w-2 h-2 rounded-full transition-colors ${i === lbIndex ? 'bg-white' : 'bg-white/30'}`;
-                dot.addEventListener('click', () => {
-                    lbIndex = i;
+            const project = projects[currentProject];
+
+            lightboxImg.src = project.images[currentImage];
+            lightboxImg.alt =
+                `${project.title} screenshot ${currentImage + 1}`;
+
+            lightboxTitle.textContent = project.title;
+
+            lightboxDots.innerHTML = "";
+
+            project.images.forEach((_, index) => {
+                const dot = document.createElement("button");
+
+                dot.className =
+                    `w-2 h-2 rounded-full transition-colors ${
+                        index === currentImage
+                            ? "bg-white"
+                            : "bg-white/30"
+                    }`;
+
+                dot.setAttribute(
+                    "aria-label",
+                    `View screenshot ${index + 1}`
+                );
+
+                dot.addEventListener("click", () => {
+                    currentImage = index;
                     updateLightbox();
                 });
+
                 lightboxDots.appendChild(dot);
             });
-            const single = p.images.length <= 1;
-            (document.getElementById('lightbox-prev') as HTMLElement).style.display = single ? 'none' : '';
-            (document.getElementById('lightbox-next') as HTMLElement).style.display = single ? 'none' : '';
+
+            const hasMultipleImages = project.images.length > 1;
+
+            previousButton.style.display =
+                hasMultipleImages ? "" : "none";
+
+            nextButton.style.display =
+                hasMultipleImages ? "" : "none";
         }
 
-        document.querySelectorAll('.gallery-container').forEach(container => {
-            container.addEventListener('click', () => {
-                const pi = parseInt((container as HTMLElement).dataset.project!);
-                if (projects[pi].images.length > 0) openLightbox(pi, currentIndex[pi]);
+
+        /*
+         * Clicking a project image
+         */
+        document
+            .querySelectorAll<HTMLElement>("[data-project-image]")
+            .forEach((container) => {
+
+                container.addEventListener("click", () => {
+
+                    const projectIndex = parseInt(
+                        container.dataset.projectImage!
+                    );
+
+                    const project = projects[projectIndex];
+
+                    /*
+                     * Open live site or demo when available
+                     */
+                    if (project.link) {
+                        window.open(
+                            project.link,
+                            "_blank",
+                            "noopener,noreferrer"
+                        );
+
+                        return;
+                    }
+
+                    if (project.demo) {
+                        window.open(
+                            project.demo,
+                            "_blank",
+                            "noopener,noreferrer"
+                        );
+
+                        return;
+                    }
+
+                    /*
+                     * Otherwise open screenshots
+                     */
+                    if (project.images.length > 0) {
+                        openLightbox(
+                            projectIndex,
+                            currentIndex[projectIndex]
+                        );
+                    }
+                });
             });
-        });
 
-        document.getElementById('lightbox-close')!.addEventListener('click', closeLightbox);
 
-        document.getElementById('lightbox-prev')!.addEventListener('click', () => {
-            const total = projects[lbProject].images.length;
-            lbIndex = (lbIndex - 1 + total) % total;
+        /*
+         * Close button
+         */
+        closeButton.addEventListener("click", closeLightbox);
+
+
+        /*
+         * Previous image
+         */
+        previousButton.addEventListener("click", () => {
+
+            const total =
+                projects[currentProject].images.length;
+
+            currentImage =
+                (currentImage - 1 + total) % total;
+
             updateLightbox();
         });
 
-        document.getElementById('lightbox-next')!.addEventListener('click', () => {
-            const total = projects[lbProject].images.length;
-            lbIndex = (lbIndex + 1) % total;
+
+        /*
+         * Next image
+         */
+        nextButton.addEventListener("click", () => {
+
+            const total =
+                projects[currentProject].images.length;
+
+            currentImage =
+                (currentImage + 1) % total;
+
             updateLightbox();
         });
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+
+        /*
+         * Close when clicking the background
+         */
+        lightbox.addEventListener("click", (event) => {
+
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('flex')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') {
-                const total = projects[lbProject].images.length;
-                lbIndex = (lbIndex - 1 + total) % total;
+
+        /*
+         * Keyboard controls
+         */
+        document.addEventListener("keydown", (event) => {
+
+            if (!lightbox.classList.contains("flex")) {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+
+            if (event.key === "ArrowLeft") {
+
+                const total =
+                    projects[currentProject].images.length;
+
+                currentImage =
+                    (currentImage - 1 + total) % total;
+
                 updateLightbox();
             }
-            if (e.key === 'ArrowRight') {
-                const total = projects[lbProject].images.length;
-                lbIndex = (lbIndex + 1) % total;
+
+            if (event.key === "ArrowRight") {
+
+                const total =
+                    projects[currentProject].images.length;
+
+                currentImage =
+                    (currentImage + 1) % total;
+
                 updateLightbox();
             }
         });
@@ -635,27 +845,73 @@ import '../styles/global.css';
     <!-- CONTACT -->
     <section id="contact" class="py-24 px-6 max-w-2xl mx-auto border-t border-neutral-800">
         <p class="text-neutral-500 text-sm tracking-widest uppercase mb-4">Contact</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Let's work together.</h2>
-        <p class="text-neutral-400 mb-10">Have a project in mind? Fill out the form below and I'll get
-            back to you
-            within 24 hours.</p>
-        <form name="contact" netlify-honeypot="bot-field" netlify class="flex flex-col gap-4">
-            <input type="hidden" name="form-name" value="contact"/>
-            <p class="hidden" aria-hidden="true">
-                <input name="bot-field" autocomplete="off"/>
-            </p>
-            <input type="text" name="name" placeholder="Your name"
-                   class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"/>
-            <input type="email" name="email" placeholder="Your email"
-                   class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"/>
-            <textarea name="message" placeholder="Tell me about your project" rows="5"
-                      class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors resize-none"></textarea>
-            <button type="submit"
-                    class="px-6 py-3 bg-white text-neutral-950 font-medium rounded-lg hover:bg-neutral-200 transition-colors text-sm w-fit">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Let's work together.
+        </h2>
+
+        <p class="text-neutral-400 mb-10">
+            Have a project in mind? Fill out the form below and I'll get back to you within 24 hours.
+        </p>
+
+        <form
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                class="flex flex-col gap-4"
+        >
+            <input
+                    type="hidden"
+                    name="access_key"
+                    value="ee3b75e2-f075-4d76-a833-4d6b69961aa6"
+            />
+
+            <input
+                    type="hidden"
+                    name="subject"
+                    value="New project inquiry from jamestaylor.dev"
+            />
+
+            <!-- Spam protection -->
+            <input
+                    type="checkbox"
+                    name="botcheck"
+                    class="hidden"
+                    style="display: none;"
+            />
+
+            <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+            />
+
+            <input
+                    type="email"
+                    name="email"
+                    placeholder="Your email"
+                    required
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+            />
+
+            <textarea
+                    name="message"
+                    placeholder="Tell me about your project"
+                    rows="5"
+                    required
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors resize-none"
+            ></textarea>
+
+            <button
+                    type="submit"
+                    class="px-6 py-3 bg-white text-neutral-950 font-medium rounded-lg hover:bg-neutral-200 transition-colors text-sm w-fit"
+            >
                 Send message
             </button>
         </form>
     </section>
+
 
     <!-- FOOTER -->
     <footer class="py-8 px-6 border-t border-neutral-800 text-center text-neutral-600 text-sm">
