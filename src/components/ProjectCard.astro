@@ -1,0 +1,96 @@
+---
+interface Props {
+    project: {
+        title: string;
+        desc: string;
+        tech: string;
+        link: string | null;
+        demo: string | null;
+        images: string[];
+    };
+    index: number;
+}
+
+const {project, index} = Astro.props;
+---
+
+<div
+        class="border border-neutral-800 rounded-xl overflow-hidden hover:border-neutral-600 transition-colors group"
+>
+    <div
+            class={`relative w-full h-48 bg-neutral-900 overflow-hidden ${
+                project.images.length > 0 ? 'cursor-pointer gallery-container' : ''
+            }`}
+            data-project={index}
+            data-link={project.link || ''}
+            data-demo={project.demo || ''}
+    >
+        {project.images.length > 0 ? (
+                <>
+                    {project.images.map((img, imageIndex) => (
+                            <img
+                                    src={img}
+                                    alt={`${project.title} screenshot ${imageIndex + 1}`}
+                                    class={`gallery-img absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                                        imageIndex === 0 ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                    data-index={imageIndex}
+                                    data-project={index}
+                            />
+                    ))}
+
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                </>
+        ) : (
+                <div class="absolute inset-0 flex items-center justify-center text-neutral-700 text-sm">
+                    No preview available
+                </div>
+        )}
+    </div>
+
+    <div class="p-5">
+        <div class="flex items-center justify-between gap-2 mb-2">
+            <h3 class="text-white font-semibold">
+                {project.title}
+            </h3>
+
+            {project.images.length > 0 && (
+                project.link ? (
+                        <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-colors whitespace-nowrap"
+                        >
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+                            Live Site
+                        </a>
+                ) : project.demo ? (
+                        <a
+                                href={project.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-colors whitespace-nowrap"
+                        >
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+                            Demo
+                        </a>
+                ) : (
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-300 whitespace-nowrap">
+                        Screenshots
+                    </span>
+                )
+            )}
+        </div>
+
+        <p class="text-neutral-400 text-sm mb-3 leading-relaxed">
+            {project.desc}
+        </p>
+
+        {project.tech && (
+                <span class="text-xs text-neutral-600">
+                {project.tech}
+            </span>
+        )}
+    </div>
+</div>

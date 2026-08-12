@@ -1,0 +1,54 @@
+---
+interface Props {
+    title: string;
+    desc: string;
+    accent: string;
+    icon: string;
+}
+
+const { title, desc, accent, icon } = Astro.props;
+---
+
+<div
+        class="service-card relative p-6 border border-neutral-800 rounded-xl transition-all duration-300 overflow-hidden"
+        style={`--accent: ${accent};`}
+>
+    <div
+            class="absolute top-0 left-0 right-0 h-px"
+            style={`background: linear-gradient(90deg, transparent, ${accent}80, transparent);`}
+    ></div>
+
+    <div
+            class="absolute inset-0 opacity-0 service-glow transition-opacity duration-300 rounded-xl"
+            style={`background: radial-gradient(ellipse at top left, ${accent}12 0%, transparent 60%);`}
+    ></div>
+
+    <div
+            class="relative mb-4 w-8 h-8 rounded-lg flex items-center justify-center"
+            style={`background: ${accent}18;`}
+    >
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                style={`color: ${accent};`}
+        >
+            <path d={icon} />
+        </svg>
+    </div>
+
+    <h3 class="relative text-white font-semibold mb-2">{title}</h3>
+    <p class="relative text-neutral-400 text-sm leading-relaxed">{desc}</p>
+</div>
+
+<style>
+    .service-card:hover {
+        border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .service-card:hover .service-glow {
+        opacity: 1;
+    }
+</style>
