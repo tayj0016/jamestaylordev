@@ -1,24 +1,9 @@
-<!-- HERO -->
-<section class="relative min-h-screen flex flex-col justify-center px-6 overflow-hidden">
-    <div
-            class="absolute inset-0 -z-10"
-            style="background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px;"
-    ></div>
+<section id="about" class="relative min-h-screen flex flex-col justify-center px-6 overflow-hidden">
+    <div class="background-grid absolute inset-0 -z-10"></div>
 
-    <div
-            class="absolute -z-10 sunset-orb"
-            style="width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle at center, rgba(180,60,255,0.20) 0%, rgba(220,90,40,0.16) 40%, rgba(30,20,80,0.08) 70%, transparent 100%); top: -150px; right: -250px; filter: blur(50px);"
-    ></div>
-
-    <div
-            class="absolute -z-10 sunset-orb-2"
-            style="width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle at center, rgba(30,60,200,0.18) 0%, rgba(120,30,180,0.12) 50%, transparent 100%); bottom: -100px; left: -150px; filter: blur(60px);"
-    ></div>
-
-    <div
-            class="absolute -z-10 sunset-orb-3"
-            style="width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle at center, rgba(200,60,20,0.12) 0%, rgba(160,30,120,0.10) 50%, transparent 100%); bottom: -50px; right: -100px; filter: blur(55px);"
-    ></div>
+    <div class="sunset-orb absolute -z-10"></div>
+    <div class="sunset-orb-2 absolute -z-10"></div>
+    <div class="sunset-orb-3 absolute -z-10"></div>
 
     <div class="max-w-4xl mx-auto w-full">
         <p class="text-neutral-500 text-sm mb-4 tracking-widest uppercase">
@@ -54,6 +39,64 @@
 </section>
 
 <style>
+    .background-grid {
+        background-image: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.06) 1px,
+                transparent 1px
+        );
+        background-size: 28px 28px;
+    }
+
+    .sunset-orb {
+        width: 800px;
+        height: 800px;
+        border-radius: 50%;
+        background: radial-gradient(
+                circle at center,
+                rgba(180, 60, 255, 0.20) 0%,
+                rgba(220, 90, 40, 0.16) 40%,
+                rgba(30, 20, 80, 0.08) 70%,
+                transparent 100%
+        );
+        top: -150px;
+        right: -250px;
+        filter: blur(50px);
+        animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .sunset-orb-2 {
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+                circle at center,
+                rgba(30, 60, 200, 0.18) 0%,
+                rgba(120, 30, 180, 0.12) 50%,
+                transparent 100%
+        );
+        bottom: -100px;
+        left: -150px;
+        filter: blur(60px);
+        animation: drift 16s ease-in-out infinite alternate-reverse;
+    }
+
+    .sunset-orb-3 {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+                circle at center,
+                rgba(200, 60, 20, 0.12) 0%,
+                rgba(160, 30, 120, 0.10) 50%,
+                transparent 100%
+        );
+        bottom: -50px;
+        right: -100px;
+        filter: blur(55px);
+        animation: drift 20s ease-in-out infinite alternate;
+    }
+
     .sunset-text {
         background: linear-gradient(90deg, #a855f7, #f97316);
         -webkit-background-clip: text;
@@ -66,18 +109,6 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-    }
-
-    .sunset-orb {
-        animation: drift 12s ease-in-out infinite alternate;
-    }
-
-    .sunset-orb-2 {
-        animation: drift 16s ease-in-out infinite alternate-reverse;
-    }
-
-    .sunset-orb-3 {
-        animation: drift 20s ease-in-out infinite alternate;
     }
 
     @keyframes drift {
@@ -94,4 +125,3 @@
         }
     }
 </style>
-
