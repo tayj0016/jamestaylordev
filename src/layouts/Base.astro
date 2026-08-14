@@ -1,22 +1,53 @@
 ---
 interface Props {
     title?: string;
+    description?: string;
 }
+
 import "../styles/global.css";
 
-const {title = "James W. Taylor — Web & App Developer"} = Astro.props;
+const {
+    title = "James W. Taylor — Web & App Developer",
+    description = "Freelance web and app developer based in Jacksonville, Florida. I build custom websites and web applications from development through deployment and maintenance."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://jamestaylor.dev");
 ---
 
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Freelance web and app developer based in Jacksonville, FL."/>
+
     <title>{title}</title>
+    <meta name="description" content={description}/>
+    <link rel="canonical" href={canonicalURL}/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content={title}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:url" content={canonicalURL}/>
+    <meta property="og:site_name" content="James W. Taylor"/>
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content={title}/>
+    <meta name="twitter:description" content={description}/>
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
 </head>
+
 <body>
 <slot/>
 </body>
